@@ -1,6 +1,6 @@
 # LABORAT-RIO-DE-DESENVOLVIMENTO-DE-SOFTWARE
 ## Gerar Currículo
-**Como** Secretária//
+**Como** Secretária\\
 **Desejo** gerar currículo para o semestre
 **Para** manter informações da disciplina, dos professores e alunos
 ## Verificar quantidade de alunos matriculados
