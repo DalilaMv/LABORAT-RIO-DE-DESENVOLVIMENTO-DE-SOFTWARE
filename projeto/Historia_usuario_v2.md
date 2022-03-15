@@ -11,35 +11,31 @@
 **Como** Secretária\
 **Desejo** gerar informações dos alunos\
 **Para** para manter o controle de dados de acesso e matrículas dos alunos\
-## S04: Gerar informações das matrículas
+## S04: Gerar informações das professores
 **Como** Secretária\
 **Desejo** gerar informações dos professores\
 **Para** para manter o controle de dados de acesso e disciplinas ministradas pelos professores\
-## S05: Gerar informações das matrículas
-**Como** Secretária\
-**Desejo** gerar informações dos professores\
-**Para** para manter o controle de dados de acesso e disciplinas ministradas pelos professores\
-## S06: Fazer login
+## S05: Fazer login
 **Como** Usuário\
 **Desejo** fazer login\
 **Para** acessar o sistema\
-## S07: Recuperar a senha
+## S06: Recuperar a senha
 **Como** Usuário\
 **Desejo** recuperar a senha\
 **Para** conseguir logar no sistema caso esqueça a senha\
-## S08: Verificar quantidade de alunos matriculados
+## S07: Verificar quantidade de alunos matriculados
 **Como** Professor\
 **Desejo** verificar quantidade de alunos matriculados\
 **Para** saber se a disciplina será cancelada\
-## S09: Efetuar matricula
+## S08: Efetuar matricula
 **Como** Aluno\ 
 **Desejo** realizar matricular em uma disciplina\
 **Para** realizar a disciplina\
-## S10: Cancelar matricula
+## S09: Cancelar matricula
 **Como** Aluno\
 **Desejo** cancelar matricula na disciplina\
 **Para** não realizar a disciplina\
-## S11: Gerar cobrança
+## S10: Gerar cobrança
 **Como** Financeiro\
 **Desejo** ser notificado das matriculas de cada aluno\
 **Para** realizar a devida cobrança\
