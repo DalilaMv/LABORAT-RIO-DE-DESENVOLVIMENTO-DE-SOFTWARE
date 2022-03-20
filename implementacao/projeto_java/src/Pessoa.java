@@ -1,38 +1,22 @@
 
 abstract class Pessoa{
-    private String nome;
-    private String CPF;
-    private int matricula;
-    private String senhaSistema;
+    public String nome;
+    public int CPF;
+    public int matricula;
+    public String senhaSistema;
+    public int tipo;
 
     public abstract boolean fazerLogin(String senha, int matricula);
 
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-    public String getNome(){
-        return this.nome;
-    }    
-    public void setCPF(String CPF){
-        this.CPF = CPF;
-    }
-    public String getCPF(){
-        return this.CPF;
-    }   
-    public void setSenhaSistema(String senhaSistema){
-        this.senhaSistema = senhaSistema;
-    } 
-    public String getSenhaSistema(){
-        return this.senhaSistema;
-    }
-    public void setMatricula(int matricula){
-        this.matricula = matricula;
-    }
-    public int getMatricula(){
-        return this.matricula;
-    }
-    
-    // public void gerarRelatorio(int matricula){
-    //     System.out.println(matricula);
-    // }
+    public abstract String getNome();
+    public abstract void setNome(String nome);
+    public abstract void setCPF(int CPF);
+    public abstract int getCPF();
+    public abstract void setSenhaSistema(String senhaSistema);
+    public abstract String getSenhaSistema();
+    public abstract void setMatricula(int matricula);
+    public abstract int getMatricula();
+    public abstract int getTipo();
+    public abstract void setTipo(int tipo);
+
 }

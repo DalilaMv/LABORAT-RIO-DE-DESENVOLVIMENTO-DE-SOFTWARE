@@ -123,45 +123,77 @@ public class App {
 										s.gerarRelatorio(3);
 									break;
 									case 4:
-										//chama metodo de gerar curriculo do semestre
+										int semestre_opt;
+										do {
+											System.out.println("*----------- SELECIONE UMA OPCAO -----------*");
+											System.out.println("[1] - Cadastrar disciplina.");
+											System.out.println("[2] - Cadastrar curso.");
+											System.out.println("[3] - Cadastrar nova oferta.");
+											System.out.println("[4] - Voltar.");
+											semestre_opt = teclado.nextInt();
+											switch(secretaria_opt){
+												case 1:
+													break;
+												case 2:
+													break;
+												case 3:
+													break;
+												case 4:
+													break;
+												default:
+													System.out.println("--------------------------------------------");
+													System.out.println("**Opcao Invalida!");
+													System.out.println("--------------------------------------------");
+													break;
+											}
+										} while (semestre_opt!=4)	;
+
 									break;
+									case 5:
+										break;
 									default:
-									System.out.println("--------------------------------------------");
-									System.out.println("**Opcao Invalida!");
-									System.out.println("--------------------------------------------");
-									break;
-								}
-
-							}while(secretaria_opt!=5);
-						
-
-						}
-					} else if (tipo_login == 2) {
-							Aluno a = new Aluno();
-							verify = a.fazerLogin(senha, matricula);
-							if (verify == true) {
-								do {
-									System.out.println("*----------- SELECIONE UMA OPCAO -----------*");
-									System.out.println("[1] - Matricular em disciplina.");
-									System.out.println("[2] - Cancelar matricula em disciplina.");
-									System.out.println("[3] - Sair.");
-									System.out.println("*-------------------------------------------*");
-									aluno_opt= teclado.nextInt();
-									switch(aluno_opt){
-										case 1:
-											//chama metodo de matricula em disciplina
-										break;
-										case 2:
-											//chama metodo de cancelar matricula
-										break;
-										default:
 										System.out.println("--------------------------------------------");
 										System.out.println("**Opcao Invalida!");
 										System.out.println("--------------------------------------------");
 										break;
-									}
-								}while(aluno_opt!=3);
-							}
+								}
+
+							}while(secretaria_opt!=5);
+						} else {
+							System.out.println("");
+							System.out.println("Senha e/ou matricula incorreta!!!");
+						}
+					} else if (tipo_login == 2) {
+						Aluno a = new Aluno();
+						verify = a.fazerLogin(senha, matricula);
+						if (verify == true) {
+							do {
+								System.out.println("*----------- SELECIONE UMA OPCAO -----------*");
+								System.out.println("[1] - Matricular em disciplina.");
+								System.out.println("[2] - Cancelar matricula em disciplina.");
+								System.out.println("[3] - Sair.");
+								System.out.println("*-------------------------------------------*");
+								aluno_opt= teclado.nextInt();
+								switch(aluno_opt){
+									case 1:
+										//chama metodo de matricula em disciplina
+										break;
+									case 2:
+										//chama metodo de cancelar matricula
+										break;
+									case 3:
+										break;
+									default:
+										System.out.println("--------------------------------------------");
+										System.out.println("**Opcao Invalida!");
+										System.out.println("--------------------------------------------");
+										break;
+								}
+							}while(aluno_opt!=3);
+						} else {
+							System.out.println("");
+							System.out.println("Senha e/ou matricula incorreta!!!");
+						}
 					} else if (tipo_login == 3) {
 						Professor p = new Professor();
 						verify = p.fazerLogin(senha, matricula);
@@ -175,15 +207,20 @@ public class App {
 								switch(prof_opt){
 									case 1:
 										//chama metodo de visualizar alunos matriculados em determinada disciplina
-									break;
+										break;
+									case 2:
+										break;
 									default:
-									System.out.println("--------------------------------------------");
-									System.out.println("**Opcao Invalida!");
-									System.out.println("--------------------------------------------");
-									break;
+										System.out.println("--------------------------------------------");
+										System.out.println("**Opcao Invalida!");
+										System.out.println("--------------------------------------------");
+										break;
 								}
 							}while(prof_opt!=2);
 						
+						} else {
+							System.out.println("");
+							System.out.println("Senha e/ou matricula incorreta!!!");
 						}
 					} else {
 						System.out.println("--------------------------------------------");

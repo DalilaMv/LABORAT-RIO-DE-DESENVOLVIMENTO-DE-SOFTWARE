@@ -26,7 +26,7 @@ public class ConexaoSQLite {
             return false;
         }
 
-        System.out.println("conectou!!!");
+//        System.out.println("conectou!!!");
         
         return true;
     }
@@ -43,7 +43,7 @@ public class ConexaoSQLite {
             System.err.println(e.getMessage());
             return false;
         }
-        System.out.println("desconectou!!!");
+//        System.out.println("desconectou!!!");
         return true;
 
     }
@@ -70,10 +70,7 @@ public class ConexaoSQLite {
             return null;
         }
     }
-    
 
-
-    
 
     public Connection getConexao(){
         return this.conexao;

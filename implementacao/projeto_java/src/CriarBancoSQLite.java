@@ -1,5 +1,6 @@
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -11,6 +12,34 @@ public class CriarBancoSQLite {
 
   public CriarBancoSQLite(ConexaoSQLite pConexaoSQLite){
     this.conexaoSQLite = pConexaoSQLite;
+  }
+
+  public boolean login(String senha, int matricula, int tipo) {
+    this.conexaoSQLite.conectar();
+
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+
+    String sqlselect = "SELECT * "
+            + " FROM pessoa"
+            + " WHERE senhaSistema = ? AND matricula = ? AND tipo = ?";
+    preparedStatement = this.conexaoSQLite.criarPreparedStatement(sqlselect);
+
+    try {
+      preparedStatement.setString(1, senha);
+      preparedStatement.setInt(2, matricula);
+      preparedStatement.setInt(3, tipo);
+
+      resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+        return true;
+      } else {
+        return false;
+      }
+    }catch(SQLException e) {
+      return false;
+    }
   }
 
   public void criarTabelaPessoa() {

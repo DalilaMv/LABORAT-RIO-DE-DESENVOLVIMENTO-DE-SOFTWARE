@@ -10,32 +10,23 @@ public class Secretaria extends Pessoa{
 
     @Override
     public boolean fazerLogin(String senha, int matricula) {
-        ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
-        conexaoSQLite.conectar();
-
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-
-        String sqlselect = "SELECT * "
-                    + " FROM pessoa"
-                    + " WHERE senhaSistema = ? AND matricula = ? AND tipo = 1";
-        preparedStatement = conexaoSQLite.criarPreparedStatement(sqlselect);
-
-        System.out.println(preparedStatement);
-        try {
-            System.out.println(sqlselect);
-            preparedStatement.setString(1, senha);
-            preparedStatement.setInt(2, matricula);
-
-            resultSet = preparedStatement.executeQuery();
-
-            System.out.println(resultSet);
-            return true;
-        }catch(SQLException e) {
-            return false;
-        }
+        ConexaoSQLite c = new ConexaoSQLite();
+        CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(c);
+        boolean is_registered = criarBancoSQLite.login(senha, matricula, 1);
+        return is_registered;
     }
 
+    public void criarDisciplina(){
+
+    }
+
+    public void criarMatricula(){
+
+    }
+
+     public void criarOferta(){
+
+     }
 
     public void criarPessoa(String nome, int CPF,String senhaSistema, int tipo) {
         ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
@@ -103,7 +94,7 @@ public class Secretaria extends Pessoa{
             }
         
             if(!resultSet.next()){
-                System.out.println("Sem dados.");
+                System.out.println(" ");
             }
         
         }catch (SQLException e) {
@@ -120,18 +111,54 @@ public class Secretaria extends Pessoa{
     }
 
 
-    // private ArrayList<Curso> cursos = new ArrayList<>();
-    // public void setCursos(Curso cursos){
-    //     this.cursos = cursos;
-    // }
-    // public String getCursos(){
-    //     return this.cursos;
-    // }
-    // public void gerarCurriculoSemestre(int idDisciplina){
-    //     System.out.printl "Cursos: " + this.cursos.stream()
-    //                                               .filter(item -> item.getIdCurso() == idDisciplina)
-    //                                               .collect(Collectors.toList());
-    // }
+    @Override
+    public String getNome(){
+        return this.nome;
+    }
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    @Override
+    public int getCPF(){
+        return this.CPF;
+    }
+
+    @Override
+    public void setCPF(int CPF) {
+        this.CPF = CPF;
+    }
+
+    @Override
+    public String getSenhaSistema(){
+        return this.senhaSistema;
+    }
+
+    @Override
+    public void setSenhaSistema(String senhaSistema) {
+        this.senhaSistema = senhaSistema;
+    }
+
+
+    @Override
+    public int getMatricula(){
+        return this.matricula;
+    }
+
+    @Override
+    public void setMatricula(int matricula){
+        this.matricula = matricula;
+    }
+
+    @Override
+    public int getTipo() {
+        return this.tipo;
+    };
+
+    @Override
+    public void setTipo(int tipo){
+        this.tipo = tipo;
+    }
 
 }
