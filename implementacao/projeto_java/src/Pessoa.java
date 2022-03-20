@@ -1,12 +1,11 @@
-public interface Pessoa{
+
+abstract class Pessoa{
     private String nome;
     private String CPF;
     private int matricula;
     private String senhaSistema;
 
-    public boolean fazerLogin(String senha, int matricula){
-        
-    }
+    public abstract boolean fazerLogin(String senha, int matricula);
 
     public void setNome(String nome){
         this.nome = nome;
@@ -32,7 +31,8 @@ public interface Pessoa{
     public int getMatricula(){
         return this.matricula;
     }
-    public void gerarRelatorio(matricula:int){
-        System.out.printl "matricula";
-    }
+    
+    // public void gerarRelatorio(int matricula){
+    //     System.out.println(matricula);
+    // }
 }

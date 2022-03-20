@@ -1,23 +1,27 @@
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class CriarTabelas {
+public class CriarBancoSQLite {
 
   private final ConexaoSQLite conexaoSQLite;
 
-  public CriarTabelas(ConexaoSQLite pConexaoSQLite){
+  public CriarBancoSQLite(ConexaoSQLite pConexaoSQLite){
     this.conexaoSQLite = pConexaoSQLite;
   }
 
   public void criarTabelaPessoa() {
+    
     String sql = "CREATE TABLE IF NOT EXISTS pessoa"
             + "("
-            + "id integer PRIMARY KEY,"
             + "nome text NOT NULL,"
             + "CPF integer NOT NULL,"
-            + "matricula integer NOT NULL,"
-            + "senhaSistema text NOT NULL"
+            + "matricula integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,"
+            + "senhaSistema text NOT NULL,"
+            + "tipo integer NOT NULL"
             + ");";
 
     boolean conectou = false;

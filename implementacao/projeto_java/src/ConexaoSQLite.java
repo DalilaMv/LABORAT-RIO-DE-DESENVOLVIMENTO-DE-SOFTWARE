@@ -1,8 +1,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 
 public class ConexaoSQLite {
 
@@ -57,6 +57,23 @@ public class ConexaoSQLite {
             return null;
         }
     }
+
+    /**
+     * Criar os statements para nossos sqls serem executados
+     *
+     * @return
+     */
+    public PreparedStatement criarPreparedStatement(String sql) {
+        try {
+            return this.conexao.prepareStatement(sql);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+
+
+    
 
     public Connection getConexao(){
         return this.conexao;
