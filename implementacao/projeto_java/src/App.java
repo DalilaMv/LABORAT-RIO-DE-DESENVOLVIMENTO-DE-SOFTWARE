@@ -135,6 +135,37 @@ public class App {
 											semestre_opt = teclado.nextInt();
 											switch(semestre_opt){
 												case 1:
+													int disciplina_opt;
+													Disciplina disciplina = new Disciplina();
+													System.out.println("*----------- CADASTRAR DISCIPLINA -----------*");
+													System.out.println("*----------- SELECIONE UMA OPCAO -----------*");
+													System.out.println("[1] - disciplina obrigatoria.");
+													System.out.println("[2] - disciplina opcional.");
+													System.out.println("--------------------------------------------");
+													System.out.print(">");
+													disciplina_opt = teclado.nextInt();
+													switch(disciplina_opt){
+														case 1:
+															disciplina.setTipo("obrigatoria");
+															break;
+														case 2:
+															disciplina.setTipo("opcional");
+															break;
+														default:
+															System.out.println("--------------------------------------------");
+															System.out.println("**Opcao Invalida!");
+															System.out.println("--------------------------------------------");
+															break;
+													}
+													System.out.println("Nome da disciplina:");
+													System.out.print(">");
+													disciplina.setNome(teclado.next());
+													System.out.println("Selecione o curso:");
+													System.out.println(" ");
+													s.getCursos();
+													System.out.println(" ");
+													disciplina.setCurso(teclado.nextInt());
+													s.criarDisciplina(disciplina);
 													break;
 												case 2:
 													Curso curso = new Curso();

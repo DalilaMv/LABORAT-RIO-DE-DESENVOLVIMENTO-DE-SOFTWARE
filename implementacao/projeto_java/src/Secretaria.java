@@ -15,7 +15,40 @@ public class Secretaria extends Pessoa{
         return criarBancoSQLite.login(senha, matricula, 1);
     }
 
-    public void criarDisciplina(){
+    public void criarDisciplina(Disciplina d1){
+        ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
+        conexaoSQLite.conectar();
+        String sqlInsert = " INSERT INTO disciplina ("
+                + "nome,"
+                + "tipo,"
+                + "curso"
+                + ") VALUES(?,?,?)"
+                +";";
+        PreparedStatement preparedStatement = conexaoSQLite.criarPreparedStatement(sqlInsert);
+
+        try{
+            preparedStatement.setString(1, d1.getNome());
+            preparedStatement.setString(2, d1.getTipo());
+            preparedStatement.setInt(3, d1.getCurso());
+
+            int resultado = preparedStatement.executeUpdate();
+            if(resultado == 1) {
+                System.out.println("disciplina cadastrado");
+            } else {
+                System.out.println("não foi possivel cadastrar essa disciplina");
+            }
+        }catch(SQLException e){
+            System.out.println("não foi possivel cadastrar essa disciplina");
+        } finally {
+            if(preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch(SQLException ex) {
+                    Logger.getLogger(CriarBancoSQLite.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            conexaoSQLite.desconectar();
+        }
 
     }
 
@@ -101,6 +134,43 @@ public class Secretaria extends Pessoa{
         }
     }
 
+    public void getCursos(){
+        ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
+        ResultSet resultSet = null;
+        Statement statement = null;
+        String query;
+        conexaoSQLite.conectar();
+
+
+        query = "SELECT * FROM curso";
+
+
+        statement = conexaoSQLite.criarStatement();
+        try{
+            resultSet = statement.executeQuery(query);
+            int count = 0;
+            while(resultSet.next()) {
+                count += 1;
+                System.out.println("["+resultSet.getInt("cursoid")+"] - "+resultSet.getString("nome"));
+            }
+
+            if(!resultSet.next()){
+                System.out.println(" ");
+            }
+
+        }catch (SQLException e) {
+            System.out.println("erro no sql");
+        }finally{
+            try{
+                resultSet.close();
+                statement.close();
+                conexaoSQLite.desconectar();
+            }catch (SQLException ex){
+                System.out.println("algum erro de fechamento");
+            }
+        }
+    }
+
     public void gerarRelatorio(int tipo){
         ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
         ResultSet resultSet = null;
@@ -143,6 +213,11 @@ public class Secretaria extends Pessoa{
                 System.out.println("algum erro de fechamento");
             }
         }
+    }
+
+
+    public void cadastrarDisciplina(Disciplina d1) {
+
     }
 
 
