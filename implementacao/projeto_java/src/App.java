@@ -75,36 +75,37 @@ public class App {
 											System.out.println("[3] - Voltar.");
 											System.out.println("*-------------------------------------------*");
 											secretaria2_opt = teclado.nextInt();
-											String nome;
-											int cpf;
-											String senhasis;
 
 											switch(secretaria2_opt){
 												case 1:
+													Aluno aluno = new Aluno();
 													System.out.println("*----------- CADASTRAR ALUNO -----------*");
 													System.out.println("Nome do aluno:");
 													System.out.print(">");
-													nome = teclado.next();
+													aluno.setNome(teclado.next());
 													System.out.println("CPF:");
 													System.out.print(">");
-													cpf = teclado.nextInt();
+													aluno.setCPF(teclado.nextInt());
 													System.out.println("Senha para acessar o sistema:");
 													System.out.print(">");
-													senhasis = teclado.next();
-													s.criarPessoa(nome, cpf, senhasis, 2);
+													aluno.setSenhaSistema(teclado.next());
+													aluno.setTipo(2);
+													s.criarPessoa(aluno);
 													break;
 												case 2:
+													Professor professor = new Professor();
 													System.out.println("*----------- CADASTRAR PROFESSOR -----------*");
 													System.out.println("Nome do professor:");
 													System.out.print(">");
-													nome = teclado.next();
+													professor.setNome(teclado.next());
 													System.out.println("CPF:");
 													System.out.print(">");
-													cpf = teclado.nextInt();
+													professor.setCPF(teclado.nextInt());
 													System.out.println("Senha para acessar o sistema:");
 													System.out.print(">");
-													senhasis = teclado.next();
-													s.criarPessoa(nome, cpf, senhasis, 3);
+													professor.setSenhaSistema(teclado.next());
+													professor.setTipo(3);
+													s.criarPessoa(professor);
 												break;
 												default:
 													System.out.println("--------------------------------------------");
@@ -119,7 +120,7 @@ public class App {
 										s.gerarRelatorio(2);
 									break;
 									case 3:
-										//metodo de gerar relatorio de alunos(tipo 3)
+										//metodo de gerar relatorio de professores(tipo 3)
 										s.gerarRelatorio(3);
 									break;
 									case 4:
@@ -130,11 +131,24 @@ public class App {
 											System.out.println("[2] - Cadastrar curso.");
 											System.out.println("[3] - Cadastrar nova oferta.");
 											System.out.println("[4] - Voltar.");
+											System.out.println("--------------------------------------------");
 											semestre_opt = teclado.nextInt();
-											switch(secretaria_opt){
+											switch(semestre_opt){
 												case 1:
 													break;
 												case 2:
+													Curso curso = new Curso();
+													System.out.println("*----------- CADASTRAR CURSO -----------*");
+													System.out.println("Nome do curso:");
+													System.out.print(">");
+													curso.setNome(teclado.next());
+													System.out.println("Quantidade de semestres:");
+													System.out.print(">");
+													curso.setQtdSemestres(teclado.nextInt());
+													System.out.println("Quantidade de creditos:");
+													System.out.print(">");
+													curso.setQtdCreditos(teclado.nextInt());
+													s.criarCurso(curso);
 													break;
 												case 3:
 													break;

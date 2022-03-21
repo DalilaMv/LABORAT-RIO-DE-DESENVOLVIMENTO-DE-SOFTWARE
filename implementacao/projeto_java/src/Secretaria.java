@@ -12,23 +12,58 @@ public class Secretaria extends Pessoa{
     public boolean fazerLogin(String senha, int matricula) {
         ConexaoSQLite c = new ConexaoSQLite();
         CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(c);
-        boolean is_registered = criarBancoSQLite.login(senha, matricula, 1);
-        return is_registered;
+        return criarBancoSQLite.login(senha, matricula, 1);
     }
 
     public void criarDisciplina(){
 
     }
 
-    public void criarMatricula(){
+    public void criarCurso(Curso c1){
+        ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
+        conexaoSQLite.conectar();
+        String sqlInsert = " INSERT INTO curso ("
+                        + "nome,"
+                        + "qtdSemestres,"
+                        + "qtdCreditos"
+                        + ") VALUES(?,?,?)"
+                        +";";
+        PreparedStatement preparedStatement = conexaoSQLite.criarPreparedStatement(sqlInsert);
+
+        try{
+            preparedStatement.setString(1, c1.getNome());
+            preparedStatement.setInt(2, c1.getQtdSemestres());
+            preparedStatement.setInt(3, c1.getQtdCreditos());
+
+            int resultado = preparedStatement.executeUpdate();
+            if(resultado == 1) {
+                System.out.println("curso cadastrado");
+            } else {
+                System.out.println("não foi possivel cadastrar esse curso");
+            }
+        }catch(SQLException e){
+            System.out.println("não foi possivel cadastrar esse curso");
+        } finally {
+            if(preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch(SQLException ex) {
+                    Logger.getLogger(CriarBancoSQLite.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            conexaoSQLite.desconectar();
+        }
+    }
+
+    public void criarOferta(){
 
     }
 
-     public void criarOferta(){
-
-     }
-
-    public void criarPessoa(String nome, int CPF,String senhaSistema, int tipo) {
+    public void criarPessoa(Pessoa p1) {
+        System.out.println(p1.getNome());
+            System.out.println(p1.getCPF());
+            System.out.println(p1.getSenhaSistema());
+            System.out.println(p1.getTipo());
         ConexaoSQLite conexaoSQLite = new ConexaoSQLite();
         conexaoSQLite.conectar();
         String sqlInsert = " INSERT INTO pessoa ("
@@ -41,10 +76,10 @@ public class Secretaria extends Pessoa{
         PreparedStatement preparedStatement = conexaoSQLite.criarPreparedStatement(sqlInsert);
         
         try{
-            preparedStatement.setString(1, nome);
-            preparedStatement.setInt(2, CPF);
-            preparedStatement.setString(3, senhaSistema);
-            preparedStatement.setInt(4, tipo);
+            preparedStatement.setString(1, p1.getNome());
+            preparedStatement.setInt(2, p1.getCPF());
+            preparedStatement.setString(3, p1.getSenhaSistema());
+            preparedStatement.setInt(4, p1.getTipo());
 
             int resultado = preparedStatement.executeUpdate();
             if(resultado == 1) {
@@ -152,9 +187,7 @@ public class Secretaria extends Pessoa{
     }
 
     @Override
-    public int getTipo() {
-        return this.tipo;
-    };
+    public int getTipo() { return this.tipo; }
 
     @Override
     public void setTipo(int tipo){

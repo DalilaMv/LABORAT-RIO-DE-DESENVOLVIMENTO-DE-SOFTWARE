@@ -15,7 +15,9 @@ public class CriarBancoSQLite {
   }
 
   public boolean login(String senha, int matricula, int tipo) {
-    this.conexaoSQLite.conectar();
+
+    boolean conectou = false;
+    conectou = this.conexaoSQLite.conectar();
 
     ResultSet resultSet = null;
     PreparedStatement preparedStatement = null;
@@ -39,6 +41,10 @@ public class CriarBancoSQLite {
       }
     }catch(SQLException e) {
       return false;
+    }finally{
+      if(conectou){
+        this.conexaoSQLite.desconectar();
+      }
     }
   }
 
