@@ -6,7 +6,7 @@ public class App {
 	public static void main(String[] args) throws Exception {
 		int option = 0;
 		String lixo;
-		Scanner teclado = new Scanner(System.in);
+		Scanner teclado = new Scanner(System.in).useDelimiter("\n");
 		int tipo_login;
 		int matricula;
 		String senha;
@@ -20,7 +20,8 @@ public class App {
 		do{
 			System.out.println("");
 			System.out.println("*----------- SELECIONE UMA OPCAO -----------*");
-			System.out.println("[1] - Fazer Login");
+			System.out.println("[1] - Fazer Login.");
+			System.out.println("[2] - Recuperar Senha.");
 			System.out.println("[0] - Sair.");
 			System.out.println("*-------------------------------------------*");
 			System.out.print("> ");
@@ -162,7 +163,7 @@ public class App {
 													disciplina.setNome(teclado.next());
 													System.out.println("Selecione o curso:");
 													System.out.println(" ");
-													s.getCursos();
+													s.listCursos();
 													System.out.println(" ");
 													disciplina.setCurso(teclado.nextInt());
 													s.criarDisciplina(disciplina);
@@ -173,6 +174,7 @@ public class App {
 													System.out.println("Nome do curso:");
 													System.out.print(">");
 													curso.setNome(teclado.next());
+													System.out.print(" ");
 													System.out.println("Quantidade de semestres:");
 													System.out.print(">");
 													curso.setQtdSemestres(teclado.nextInt());
@@ -182,6 +184,23 @@ public class App {
 													s.criarCurso(curso);
 													break;
 												case 3:
+													Oferta oferta = new Oferta();
+                                                    System.out.println("*----------- CADASTRAR OFERTA -----------*");
+													System.out.println("Ano da oferta:");
+													System.out.print(">");
+													oferta.setAno(teclado.nextInt());
+													System.out.println("Semestre:");
+													System.out.print(">");
+													oferta.setSemestre(teclado.nextInt());
+													System.out.println("Selecione a Disciplina:");
+													s.listDisciplina();
+													System.out.print(">");
+													oferta.setDisciplina(teclado.nextInt());
+													System.out.println("Selecione o Professor:");
+													s.listProfessores();
+													System.out.print(">");
+													oferta.setProfessor(teclado.nextInt());
+													s.criarOferta(oferta);
 													break;
 												case 4:
 													break;
@@ -273,6 +292,26 @@ public class App {
 						System.out.println("--------------------------------------------");
 						break;
 					}
+					break;
+				case 2:
+					System.out.println("*----------- RECUPERAR SENHA -----------*");
+					System.out.println("Selecione o seu tipo de usuário:");
+					System.out.println("[1] - Secretária");
+					System.out.println("[2] - Aluno");
+					System.out.println("[3] - Professor");
+					System.out.print(">");
+					int user_type = teclado.nextInt();
+					System.out.println("Informe o CPF:");
+					System.out.print(">");
+					int user_cpf = teclado.nextInt();
+					System.out.println("Informe o número de matrícula:");
+					System.out.print(">");
+					int user_matricula = teclado.nextInt();
+					ConexaoSQLite c = new ConexaoSQLite();
+					CriarBancoSQLite criarBancoSQLite = new CriarBancoSQLite(c);
+					criarBancoSQLite.recuperarSenha(user_type,user_cpf,user_matricula);
+					System.out.println("*-------------------------------------------*");
+
 					break;
 				case 0:
 					break;

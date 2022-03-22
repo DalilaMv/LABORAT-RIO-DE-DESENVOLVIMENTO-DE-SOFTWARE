@@ -48,6 +48,40 @@ public class CriarBancoSQLite {
     }
   }
 
+  public void recuperarSenha(int tipo, int cpf, int matricula) {
+
+    boolean conectou = false;
+    conectou = this.conexaoSQLite.conectar();
+
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
+
+    String sqlselect = "SELECT senhaSistema "
+            + " FROM pessoa"
+            + " WHERE tipo = ? AND matricula = ? AND CPF = ?";
+    preparedStatement = this.conexaoSQLite.criarPreparedStatement(sqlselect);
+
+    try {
+      preparedStatement.setInt(1, tipo);
+      preparedStatement.setInt(2, matricula);
+      preparedStatement.setInt(3, cpf);
+
+      resultSet = preparedStatement.executeQuery();
+
+      if (resultSet.next()) {
+        System.out.println("A sua senha é "+resultSet.getString("senhaSistema"));
+      } else {
+        System.out.println("Dados incorretos!");
+      }
+    }catch(SQLException e) {
+      e.printStackTrace();
+    }finally{
+      if(conectou){
+        this.conexaoSQLite.desconectar();
+      }
+    }
+  }
+
   public void criarTabelaPessoa() {
     
     String sql = "CREATE TABLE IF NOT EXISTS pessoa"

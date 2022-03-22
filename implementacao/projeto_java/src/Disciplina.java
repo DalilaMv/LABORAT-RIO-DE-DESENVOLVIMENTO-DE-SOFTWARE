@@ -3,8 +3,10 @@ import java.util.ArrayList;
 public class Disciplina{
     private String nome;
     private String tipo;
-    private int curso;
     private int disciplinaid;
+
+    //    foreign key
+    private int curso;
 
 
     public void setNome(String nome){
