@@ -270,7 +270,7 @@ public class App {
 								prof_opt= teclado.nextInt();
 								switch(prof_opt){
 									case 1:
-										//chama metodo de visualizar alunos matriculados em determinada disciplina
+										p.VisualizarDisciplinas(matricula );
 										break;
 									case 2:
 										break;

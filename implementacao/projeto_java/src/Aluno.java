@@ -1,12 +1,48 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Aluno extends Pessoa {
+    private ArrayList<Disciplina> disciplinas = new ArrayList<>();
     private ArrayList<Curso> cursoMatriculado = new ArrayList<>();
     private ArrayList<Disciplina> disciplinasMatriculadasObrigatorias = new ArrayList<>();
     private ArrayList<Disciplina> disciplinasMatriculadasOpcionais = new ArrayList<>();
+    private Scanner sc = new Scanner(System.in);
 
-    public void MatricularEmDisciplina(int idDisciplina){}
-    public void cancelarEmDiscplina(int idDisciplina){}
+    public void MatricularEmDisciplina(int idDisciplina){
+        int leitor;
+        Disciplina disciplinaEscolhida;
+        System.out.println("Digite o ID da disciplina desejada para realizar a matrícula.");
+
+        this.disciplinas.stream()
+            .forEach(disciplina -> System.out.println(disciplina.getNome() + "-" + disciplina.getDisciplinaid()));
+        
+        leitor = sc.nextInt();
+
+        disciplinaEscolhida = (Disciplina) this.disciplinas.stream()
+            .filter(disciplina -> disciplina.getDisciplinaid() == leitor);
+
+        disciplinaEscolhida.setAlunosMatriculados(this);
+
+        System.out.println("Disciplina matriculada com sucesso!");
+    }
+
+
+    public void cancelarEmDiscplina(int idDisciplina){
+        int leitor;
+        Disciplina disciplinaEscolhida;
+        System.out.println("Digite o ID da disciplina desejada para cancelar a matrícula.");
+        this.disciplinas.stream()
+            .forEach(disciplina -> System.out.println(disciplina.getNome() + "-" + disciplina.getDisciplinaid()));
+
+        leitor = sc.nextInt();
+
+        disciplinaEscolhida = (Disciplina) this.disciplinas.stream()
+            .filter(disciplina -> disciplina.getDisciplinaid() == leitor);
+
+        disciplinaEscolhida.cancelarMatricula(this);
+
+        System.out.println("Matricula cancelada com sucesso!");
+    }
 
     @Override
     public boolean fazerLogin(String senha, int matricula) {
