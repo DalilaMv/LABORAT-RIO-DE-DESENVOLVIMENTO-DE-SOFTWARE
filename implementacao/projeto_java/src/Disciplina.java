@@ -1,10 +1,14 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Disciplina{
     private String nome;
     private String tipo;
     private int curso;
     private int disciplinaid;
+    private boolean obrigatoria;
+    private List<Aluno> alunosMatriculados = new LinkedList<Aluno>();
 
 
     public void setNome(String nome){
@@ -40,8 +44,16 @@ public class Disciplina{
         return this.curso;
     }
 
+    public void setAlunosMatriculados(Aluno aluno){
+        alunosMatriculados.add(aluno);
+    }
+
+    public void cancelarMatricula(Aluno aluno){
+        alunosMatriculados.remove(aluno);
+    }
+
 //    public Aluno getAlunosMatriculados(){
-//        return this.alunos.stream()
+//        return this.alunosMatriculados.stream()
 //                .map(Aluno::getCursoMatriculado)
 //                .sum();
 //    }
